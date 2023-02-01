@@ -1,3 +1,5 @@
+// https://pusher.com/tutorials/push-notifications-node-service-workers/
+
 require("dotenv").config({ path: "variables.env" });
 
 const express = require("express");
@@ -8,7 +10,7 @@ const path = require("path");
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "client")));
+app.use(express.static(path.join(__dirname, "../client")));
 
 const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
 const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
@@ -25,7 +27,7 @@ app.post("/subscribe", (req, res) => {
   res.status(201).json({});
 
   const payload = JSON.stringify({
-    title: "Push notifications with Service Workers"
+    title: "Medications updated"
   });
 
   webPush
